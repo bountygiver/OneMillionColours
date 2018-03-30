@@ -11,6 +11,8 @@
 class X2DownloadableContentInfo_OneMillionColours extends X2DownloadableContentInfo;
 
 var config array<name> SoldierTemplates;
+var config array<string> ScreenClassNames;
+var config array<name> ScreenLibNames;
 
 
 /// <summary>

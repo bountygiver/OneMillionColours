@@ -49,7 +49,8 @@ simulated function UIColorSelector InitColorSelector(optional name InitName,
 		height = initHeight - 200;
 		initHeight -= 200;
 	}
-	else if (string(Screen.Class) == "UIShell_Photobooth" || Screen.LibID == 'PhotoboothScreen')
+	else if (class'X2DownloadableContentInfo_OneMillionColours'.default.ScreenClassNames.Find(string(Screen.Class)) != INDEX_NONE || 
+				class'X2DownloadableContentInfo_OneMillionColours'.default.ScreenLibNames.Find(Screen.LibID) != INDEX_NONE)
 	{
 		CustMgr = new class'XComCustomizationColourManager';
 		initColors.Length = 0;
