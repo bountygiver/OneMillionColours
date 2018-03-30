@@ -100,12 +100,12 @@ static event OnPostTemplatesCreated()
 	local XComLinearColorPalette Palette;
 
 	//PrintPaletteEnum();
+	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 
 	// ARMOR_TINT
 	Palette = `CONTENT.GetColorPalette(ePalette_ArmorTint);
 	class'CustomColourManager'.default.START_INDEX = min(class'CustomColourManager'.default.START_INDEX, Palette.Entries.Length);
 	`log("Attempting to patch new colours [ArmorTint], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX)
@@ -116,7 +116,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_EyeColor);
 	class'CustomColourManager'.default.START_INDEX_EYES = min(class'CustomColourManager'.default.START_INDEX_EYES, Palette.Entries.Length);
 	`log("Attempting to patch new colours [EyeColor], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_EYES,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_EYES;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_EYES)
@@ -127,7 +126,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_HairColor);
 	class'CustomColourManager'.default.START_INDEX_HAIR = min(class'CustomColourManager'.default.START_INDEX_HAIR, Palette.Entries.Length);
 	`log("Attempting to patch new colours [HairColor], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_HAIR,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_HAIR;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_HAIR)
@@ -138,7 +136,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_CaucasianSkin);
 	class'CustomColourManager'.default.START_INDEX_SKIN = min(class'CustomColourManager'.default.START_INDEX_SKIN, Palette.Entries.Length);
 	`log("Attempting to patch new colours [CaucasianSkin], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_SKIN,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_SKIN;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_SKIN)
@@ -149,7 +146,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_AsianSkin);
 	class'CustomColourManager'.default.START_INDEX_SKIN = min(class'CustomColourManager'.default.START_INDEX_SKIN, Palette.Entries.Length);
 	`log("Attempting to patch new colours [AsianSkin], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_SKIN,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_SKIN;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_SKIN)
@@ -160,7 +156,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_AfricanSkin);
 	class'CustomColourManager'.default.START_INDEX_SKIN = min(class'CustomColourManager'.default.START_INDEX_SKIN, Palette.Entries.Length);
 	`log("Attempting to patch new colours [AfricanSkin], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_SKIN,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_SKIN;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_SKIN)
@@ -171,7 +166,6 @@ static event OnPostTemplatesCreated()
 	Palette = `CONTENT.GetColorPalette(ePalette_HispanicSkin);
 	class'CustomColourManager'.default.START_INDEX_SKIN = min(class'CustomColourManager'.default.START_INDEX_SKIN, Palette.Entries.Length);
 	`log("Attempting to patch new colours [HispanicSkin], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_SKIN,, 'OneMilCol');
-	class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
 	Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_SKIN;
 	`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 	if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_SKIN)
@@ -185,7 +179,7 @@ static event OnPostTemplatesCreated()
 		Palette = `CONTENT.GetColorPalette(10);
 		class'CustomColourManager'.default.START_INDEX_FONT = min(class'CustomColourManager'.default.START_INDEX_FONT, Palette.Entries.Length);
 		`log("Attempting to patch new colours [Font], current length:" @ Palette.Entries.Length @ "start index:" @ class'CustomColourManager'.default.START_INDEX_FONT,, 'OneMilCol');
-		class'CustomColourManager'.default.NUM_COLOR_PER_BASE = Clamp(class'CustomColourManager'.default.NUM_COLOR_PER_BASE, 2, 1000);
+		Palette.Entries.Length = class'CustomColourManager'.default.START_INDEX_FONT;
 		//Palette.Entries.Length = (class'CustomColourManager'.default.NUM_COLOR_PER_BASE ** 3) + class'CustomColourManager'.default.START_INDEX_FONT;
 		`log("New length:" @  Palette.Entries.Length,, 'OneMilCol');
 		if (Palette.BaseOptions > class'CustomColourManager'.default.START_INDEX_FONT)

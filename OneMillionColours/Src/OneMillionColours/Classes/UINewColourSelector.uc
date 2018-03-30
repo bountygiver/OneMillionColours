@@ -157,13 +157,13 @@ simulated function OnCustomCB(UICheckbox checkboxControl)
 
 	if (CustomBox.bChecked)
 	{
-		OnPreviewDelegate(class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
+		OnPreviewColor(class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
 		PreviewColor.SetColor(class'CustomColourManager'.static.GetHexOfSlider(CustMgr.CurrentColorSelection, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)));
 		HexButton.SetText(class'CustomColourManager'.static.GetHexOfSlider(CustMgr.CurrentColorSelection, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent), 1.0));
 	}
 	else
 	{
-		OnPreviewDelegate(InitialSelection);
+		OnPreviewColor(InitialSelection);
 	}
 }
 
@@ -179,7 +179,7 @@ simulated function SliderChanged(UISlider sliderControl)
 
 	PreviewColor.SetColor(class'CustomColourManager'.static.GetHexOfSlider(CustMgr.CurrentColorSelection, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)));
 	HexButton.SetText(class'CustomColourManager'.static.GetHexOfSlider(CustMgr.CurrentColorSelection, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent), 1.0));
-	OnPreviewDelegate(class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
+	OnPreviewColor(class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
 	SliderR.SetText("Red:" @ int(GetRealPercent(SliderR.percent)) $ "%");
 	SliderG.SetText("Green:" @ int(GetRealPercent(SliderG.percent)) $ "%");
 	SliderB.SetText("Blue:" @ int(GetRealPercent(SliderB.percent)) $ "%");
@@ -192,14 +192,12 @@ simulated function OnConfirmCustom(UIButton btnAccept)
 	{
 		start_idx = CustMgr != none ? CustMgr.GetColStartIndex() : -1;
 		if (start_idx == -1)
-			OnSetDelegate( InitialSelection );
-		if(OnSetDelegate != none)
-			OnSetDelegate( class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
+			OnCancelColor();
+		OnAcceptColor( class'CustomColourManager'.static.GetColourIndexSlider(start_idx, GetRealPercent(SliderR.percent), GetRealPercent(SliderG.percent), GetRealPercent(SliderB.percent)) );
 	}
 	else
 	{
-		if(OnSetDelegate != none)
-			OnSetDelegate( InitialSelection );
+		OnCancelColor();
 	}
 }
 
@@ -326,8 +324,23 @@ simulated function OnPreviewColor(int iIndex)
 	{
 		CustomBox.SetChecked(false, false);
 	}
+	CustMgr.SetColourIndex(iIndex);
 	if(OnPreviewDelegate != none)
 		OnPreviewDelegate( iIndex );
+}
+
+simulated function OnAcceptColor(int iIndex)
+{
+	CustMgr.SetColourIndex(iIndex);
+	if(OnSetDelegate != none)
+		OnSetDelegate( iIndex );
+}
+
+simulated function OnCancelColor()
+{
+	CustMgr.SetColourIndex(InitialSelection);
+	if(OnSetDelegate != none)
+		OnSetDelegate( InitialSelection );
 }
 
 simulated function WeapUpgradPreview(int iIndex)

@@ -1,6 +1,7 @@
 class XComCustomizationColourManager extends XComCharacterCustomization;
 
 var EColorPalette CurrentColorSelection;
+var XComLinearColorPaletteEntry SelectedColour;
 
 simulated function array<string> GetColorList( int catType )
 {
@@ -89,6 +90,20 @@ function int GetColStartIndex()
 			break;
 	}
 	return 0;
+}
+
+function SetColourIndex(int iIndex)
+{
+	local XComLinearColorPalette Palette;
+	Palette = `CONTENT.GetColorPalette(CurrentColorSelection);
+	if (iIndex < Palette.Entries.Length)
+	{
+		SelectedColour = Palette.Entries[iIndex];
+	}
+	else
+	{
+		SelectedColour = class'CustomColourManager'.default.DefaultOneMilCol[iIndex - class'CustomColourManager'.default.START_INDEX_FONT];
+	}
 }
 
 defaultproperties
