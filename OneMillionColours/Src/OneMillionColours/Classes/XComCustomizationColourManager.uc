@@ -102,7 +102,7 @@ function SetColourIndex(int iIndex)
 	}
 	else
 	{
-		SelectedColour = class'CustomColourManager'.default.DefaultOneMilCol[iIndex - class'CustomColourManager'.default.START_INDEX_FONT];
+		SelectedColour = class'CustomColourManager'.default.DefaultOneMilCol[iIndex - GetColStartIndex()];
 	}
 }
 
